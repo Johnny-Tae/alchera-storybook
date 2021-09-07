@@ -45,13 +45,13 @@ export default {
       control: {
         type: "select",
         options: [
-          require("@@/stories/assets/icon_magnify_grey.svg"),
-          require("@@/stories/assets/icon_pencil_blue.svg"),
-          require("@@/stories/assets/icon_pencil_grey.svg"),
-          require("@@/stories/assets/icon_plus_white.svg"),
-          require("@@/stories/assets/icon_trash_red.svg"),
-          require("@@/stories/assets/icon_trash_grey.svg"),
-          require("@@/stories/assets/icon_upload_white.svg")
+          require("../stories/assets/icon_magnify_grey.svg"),
+          require("../stories/assets/icon_pencil_blue.svg"),
+          require("../stories/assets/icon_pencil_grey.svg"),
+          require("../stories/assets/icon_plus_white.svg"),
+          require("../stories/assets/icon_trash_red.svg"),
+          require("../stories/assets/icon_trash_grey.svg"),
+          require("../stories/assets/icon_upload_white.svg")
         ]
       }
     },
@@ -169,7 +169,7 @@ ButtonSolid.args = {
 export const DesktopButton = Template.bind({});
 DesktopButton.args = {
   color: "#3774ff",
-  imgSrc: require("@@/stories/assets/icon_pencil_blue.svg"),
+  imgSrc: require("../stories/assets/icon_pencil_blue.svg"),
   outlined: true,
   text: "수정하기",
   textColor: "#3774ff"

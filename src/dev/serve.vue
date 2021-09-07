@@ -1,18 +1,18 @@
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 // Uncomment import and local "components" registration if library is not registered globally.
-// import { Alchera_storybookSample } from '@/entry.esm';
+import { Calendar } from "../lib-components/index.js";
 
 export default Vue.extend({
-  name: 'ServeDev',
-  // components: {
-  //  Alchera_storybookSample,
-  // }
+  name: "ServeDev",
+  components: {
+    Calendar
+  }
 });
 </script>
 
 <template>
   <div id="app">
-    <alchera_storybook-sample />
+    <Calendar />
   </div>
 </template>

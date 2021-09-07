@@ -1,16 +1,16 @@
 <template>
   <div class="background-calendar">
     <div class="header">
-      <img @click="prevYear" src="@@/stories/assets/group 4018.svg" />
+      <img @click="prevYear" src="../stories/assets/group 4018.svg" />
       <div class="text-year">{{ year }}</div>
       <img
         @click="nextYear"
-        src="@@/stories/assets/group 4019.svg"
+        src="../stories/assets/group 4019.svg"
         class="icon-arrow-right--year"
       />
-      <img @click="prevMonth" src="@@/stories/assets/group 4018.svg" />
+      <img @click="prevMonth" src="../stories/assets/group 4018.svg" />
       <div class="text-month">{{ monthNames[current.get("month")] }}</div>
-      <img @click="nextMonth" src="@@/stories/assets/group 4019.svg" />
+      <img @click="nextMonth" src="../stories/assets/group 4019.svg" />
     </div>
     <div>
       <!-- daysOfWeek -->

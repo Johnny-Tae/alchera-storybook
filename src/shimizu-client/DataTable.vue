@@ -81,11 +81,11 @@
     <template v-slot:item.download="{ item }">
       <img
         v-if="item.logs && item.logs.length"
-        :src="require('@@/stories/assets/icon_download_blue.svg')"
+        :src="require('../stories/assets/icon_download_blue.svg')"
         style="cursor: pointer"
         @click="clickDownload(item)"
       />
-      <img v-else :src="require('@@/stories/assets/icon_download_grey.svg')" />
+      <img v-else :src="require('../stories/assets/icon_download_grey.svg')" />
     </template>
 
     <!-- memberCount(department) column -->
@@ -127,10 +127,10 @@ export default {
   },
   data() {
     return {
-      iconHasFacePhoto: require("@@/stories/assets/icon_face_photo_blue.svg"),
-      iconNoFacePhoto: require("@@/stories/assets/icon_face_photo_gray.svg"),
-      iconEmptyCheckbox: require("@@/stories/assets/icon_checkbox_empty.svg"),
-      iconFilledCheckbox: require("@@/stories/assets/icon_checkbox_checked.svg"),
+      iconHasFacePhoto: require("../stories/assets/icon_face_photo_blue.svg"),
+      iconNoFacePhoto: require("../stories/assets/icon_face_photo_gray.svg"),
+      iconEmptyCheckbox: require("../stories/assets/icon_checkbox_empty.svg"),
+      iconFilledCheckbox: require("../stories/assets/icon_checkbox_checked.svg"),
       selectAllBoxChecked: false,
       expanded: [],
       realtimeHeaders: [

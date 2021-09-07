@@ -12,7 +12,7 @@ import {
   writeSheetData,
   download,
   createWorkbook
-} from "@@/stories/ExcelService";
+} from "../stories/ExcelService";
 
 export default {
   name: "excel-button",

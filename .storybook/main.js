@@ -29,8 +29,8 @@ module.exports = {
       resolve: {
         alias: {
           "~storybook": path.resolve(__dirname),
-          "@": path.resolve(__dirname, "../stories"),
-          "@@": path.resolve(__dirname, "../src"),
+          "@": path.resolve(__dirname, "../src"),
+          "@@": path.resolve(__dirname, "../src/stories"),
           ".storybook": path.resolve(__dirname, "../.storybook"),
           vue: "vue/dist/vue.js",
           vue$: "vue/dist/vue.esm.js"

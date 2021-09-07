@@ -2,6 +2,9 @@
 import fs from "fs";
 import path from "path";
 import vue from "rollup-plugin-vue";
+import svg from "rollup-plugin-vue-inline-svg";
+import sass from "rollup-plugin-sass";
+// import vueSvg from "rollup-plugin-vue-svg";
 import alias from "@rollup/plugin-alias";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
@@ -31,16 +34,27 @@ const baseConfig = {
   plugins: {
     preVue: [
       alias({
+        // entries: {
+        //   ["@"]: path.resolve(projectRoot, "src"),
+        //   ["@@"]: path.resolve(projectRoot, "src/stories")
+        // }
+        // "@": path.resolve(__dirname, "../src"),
+        // "@@": path.resolve(__dirname, "../src/stories")
         entries: [
           {
             find: "@",
             replacement: `${path.resolve(projectRoot, "src")}`
           }
+          // {
+          //   find: "@@",
+          //   replacement: `${path.resolve(projectRoot, "src/stories")}`
+          // }
         ]
       })
     ],
     replace: {
-      "process.env.NODE_ENV": JSON.stringify("production")
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      preventAssignment: true
     },
     vue: {
       css: true,
@@ -50,13 +64,13 @@ const baseConfig = {
     },
     postVue: [
       resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"]
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg", ".sass"]
       }),
       commonjs()
     ],
     babel: {
       exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg", ".sass"],
       babelHelpers: "bundled"
     }
   }
@@ -67,7 +81,8 @@ const baseConfig = {
 const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
-  "vue"
+  "vue",
+  "vuetify"
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -86,11 +101,13 @@ if (!argv.format || argv.format === "es") {
     input: "src/entry.esm.js",
     external,
     output: {
-      file: "dist/alchera_storybook.esm.js",
+      file: "dist/alchera-component-lib.esm.js",
       format: "esm",
       exports: "named"
     },
     plugins: [
+      svg(baseConfig),
+      sass(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -118,13 +135,15 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      file: "dist/alchera_storybook.ssr.js",
+      file: "dist/alchera-component-lib.ssr.js",
       format: "cjs",
-      name: "Alchera_storybook",
+      name: "AlcheraComponentLib",
       exports: "auto",
       globals
     },
     plugins: [
+      svg(baseConfig),
+      sass(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -147,13 +166,15 @@ if (!argv.format || argv.format === "iife") {
     external,
     output: {
       compact: true,
-      file: "dist/alchera_storybook.min.js",
+      file: "dist/alchera-component-lib.min.js",
       format: "iife",
-      name: "Alchera_storybook",
+      name: "AlcheraComponentLib",
       exports: "auto",
       globals
     },
     plugins: [
+      svg(baseConfig),
+      sass(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
