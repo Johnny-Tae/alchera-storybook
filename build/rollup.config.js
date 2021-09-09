@@ -4,6 +4,7 @@ import path from "path";
 import vue from "rollup-plugin-vue";
 import svg from "rollup-plugin-vue-inline-svg";
 import sass from "rollup-plugin-sass";
+import scss from "rollup-plugin-scss";
 // import vueSvg from "rollup-plugin-vue-svg";
 import alias from "@rollup/plugin-alias";
 import commonjs from "@rollup/plugin-commonjs";
@@ -64,13 +65,31 @@ const baseConfig = {
     },
     postVue: [
       resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg", ".sass"]
+        extensions: [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".vue",
+          ".svg",
+          ".sass",
+          ".scss"
+        ]
       }),
       commonjs()
     ],
     babel: {
       exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg", ".sass"],
+      extensions: [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".vue",
+        ".svg",
+        ".sass",
+        ".scss"
+      ],
       babelHelpers: "bundled"
     }
   }
@@ -108,6 +127,7 @@ if (!argv.format || argv.format === "es") {
     plugins: [
       svg(baseConfig),
       sass(),
+      scss(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -144,6 +164,7 @@ if (!argv.format || argv.format === "cjs") {
     plugins: [
       svg(baseConfig),
       sass(),
+      scss(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -175,6 +196,7 @@ if (!argv.format || argv.format === "iife") {
     plugins: [
       svg(baseConfig),
       sass(),
+      scss(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
