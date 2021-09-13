@@ -65,31 +65,13 @@ const baseConfig = {
     },
     postVue: [
       resolve({
-        extensions: [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-          ".vue",
-          ".svg",
-          ".sass",
-          ".scss"
-        ]
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"]
       }),
       commonjs()
     ],
     babel: {
       exclude: "node_modules/**",
-      extensions: [
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".vue",
-        ".svg",
-        ".sass",
-        ".scss"
-      ],
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
       babelHelpers: "bundled"
     }
   }
@@ -126,8 +108,8 @@ if (!argv.format || argv.format === "es") {
     },
     plugins: [
       svg(baseConfig),
-      sass(),
-      scss(),
+      sass(baseConfig),
+      scss(baseConfig),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -163,8 +145,8 @@ if (!argv.format || argv.format === "cjs") {
     },
     plugins: [
       svg(baseConfig),
-      sass(),
-      scss(),
+      sass(baseConfig),
+      scss(baseConfig),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -195,8 +177,8 @@ if (!argv.format || argv.format === "iife") {
     },
     plugins: [
       svg(baseConfig),
-      sass(),
-      scss(),
+      sass(baseConfig),
+      scss(baseConfig),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-export { default as Alchera_storybookSample } from "./alchera_storybook-sample.vue";
+export { default as AlcheraStorybookSample } from "./alchera-storybook-sample.vue";
 
 // aiirscan-client
 export { default as Calendar } from "../aiirscan-client/Calendar.vue";
