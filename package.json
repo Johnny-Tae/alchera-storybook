@@ -1,6 +1,6 @@
 {
   "name": "alchera-storybook",
-  "version": "0.0.3",
+  "version": "0.0.16",
   "description": "",
   "main": "dist/alchera-storybook.ssr.js",
   "browser": "dist/alchera-storybook.esm.js",
@@ -26,6 +26,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rollup/plugin-image": "^2.1.1",
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
     "@storybook/addons": "^6.3.7",
@@ -36,8 +37,7 @@
     "material-design-icons-iconfont": "^6.1.0",
     "moment": "^2.29.1",
     "rollup-plugin-sass": "^1.2.7",
-    "rollup-plugin-scss": "^3.0.0",
-    "rollup-plugin-vue-inline-svg": "^1.1.2"
+    "rollup-plugin-scss": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

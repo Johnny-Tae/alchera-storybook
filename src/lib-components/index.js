@@ -23,11 +23,11 @@ export { default as ButtonWrapper } from "../base-components/ButtonWrapper.vue";
 export { default as Search } from "../base-components/Search.vue";
 
 // composite-components
-export { default as CompanyForm } from "../composite-components/CompanyForm.vue";
-export { default as LoginForm } from "../composite-components/LoginForm.vue";
+// export { default as CompanyForm } from "../composite-components/CompanyForm.vue";
+// export { default as LoginForm } from "../composite-components/LoginForm.vue";
 
 // shimizu-client
-export { default as ShimizuCalendar } from "../shimizu-client/Calendar.vue";
-export { default as ShimizuCommuteExpandSubtable } from "../shimizu-client/CommuteExpandSubtable.vue";
-export { default as ShimizuDataTable } from "../shimizu-client/DataTable.vue";
-export { default as ShimizuExcelButton } from "../shimizu-client/ExcelButton.vue";
+// export { default as ShimizuCalendar } from "../shimizu-client/Calendar.vue";
+// export { default as ShimizuCommuteExpandSubtable } from "../shimizu-client/CommuteExpandSubtable.vue";
+// export { default as ShimizuDataTable } from "../shimizu-client/DataTable.vue";
+// export { default as ShimizuExcelButton } from "../shimizu-client/ExcelButton.vue";

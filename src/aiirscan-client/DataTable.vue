@@ -66,7 +66,21 @@
 
     <!-- face photo(employees) column -->
     <template v-slot:item.facePhoto="{ item }">
-      <div>
+      <div v-if="!!item.face && item.face !== ''">
+        <img
+          src="../stories/assets/icon_face_photo_blue.svg"
+          :style="!!item.face && item.face !== '' ? 'cursor: pointer' : ''"
+          @click="clickPreviewFacePhoto(item.face)"
+        />
+      </div>
+      <div v-else>
+        <img
+          src="../stories/assets/icon_face_photo_gray.svg"
+          :style="!!item.face && item.face !== '' ? 'cursor: pointer' : ''"
+          @click="clickPreviewFacePhoto(item.face)"
+        />
+      </div>
+      <!-- <div>
         <img
           :src="
             !!item.face && item.face !== '' ? iconHasFacePhoto : iconNoFacePhoto
@@ -74,18 +88,18 @@
           :style="!!item.face && item.face !== '' ? 'cursor: pointer' : ''"
           @click="clickPreviewFacePhoto(item.face)"
         />
-      </div>
+      </div> -->
     </template>
 
     <!-- download column -->
     <template v-slot:item.download="{ item }">
       <img
         v-if="item.logs && item.logs.length"
-        :src="require('../stories/assets/icon_download_blue.svg')"
+        src="../stories/assets/icon_download_blue.svg"
         style="cursor: pointer"
         @click="clickDownload(item)"
       />
-      <img v-else :src="require('../stories/assets/icon_download_grey.svg')" />
+      <img v-else src="../stories/assets/icon_download_grey.svg" />
     </template>
 
     <!-- memberCount(department) column -->
@@ -127,10 +141,10 @@ export default {
   },
   data() {
     return {
-      iconHasFacePhoto: require("../stories/assets/icon_face_photo_blue.svg"),
-      iconNoFacePhoto: require("../stories/assets/icon_face_photo_gray.svg"),
-      iconEmptyCheckbox: require("../stories/assets/icon_checkbox_empty.svg"),
-      iconFilledCheckbox: require("../stories/assets/icon_checkbox_checked.svg"),
+      // iconHasFacePhoto: require("../stories/assets/icon_face_photo_blue.svg"),
+      // iconNoFacePhoto: require("../stories/assets/icon_face_photo_gray.svg"),
+      // iconEmptyCheckbox: require("../stories/assets/icon_checkbox_empty.svg"),
+      // iconFilledCheckbox: require("../stories/assets/icon_checkbox_checked.svg"),
       selectAllBoxChecked: false,
       expanded: [],
       realtimeHeaders: [

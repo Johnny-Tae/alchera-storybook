@@ -2,13 +2,13 @@
 import fs from "fs";
 import path from "path";
 import vue from "rollup-plugin-vue";
-import svg from "rollup-plugin-vue-inline-svg";
+import image from "@rollup/plugin-image";
 import sass from "rollup-plugin-sass";
 import scss from "rollup-plugin-scss";
-// import vueSvg from "rollup-plugin-vue-svg";
 import alias from "@rollup/plugin-alias";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
@@ -65,6 +65,7 @@ const baseConfig = {
     },
     postVue: [
       resolve({
+        browser: true,
         extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"]
       }),
       commonjs()
@@ -83,7 +84,11 @@ const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
   "vue",
-  "vuetify"
+  "vuetify",
+  "moment",
+  "exceljs",
+  "file-saver",
+  "material-design-icons-iconfont"
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -91,7 +96,10 @@ const external = [
 const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
-  vue: "Vue"
+  vue: "Vue",
+  moment: "moment",
+  "file-saver": "FileSaver",
+  exceljs: "Excel"
 };
 
 // Customize configs for individual targets
@@ -102,14 +110,16 @@ if (!argv.format || argv.format === "es") {
     input: "src/entry.esm.js",
     external,
     output: {
-      file: "dist/alchera-component-lib.esm.js",
+      file: "dist/alchera-storybook.esm.js",
       format: "esm",
       exports: "named"
     },
     plugins: [
-      svg(baseConfig),
+      nodeResolve({ preferBuiltins: false }),
+      image(),
       sass(baseConfig),
       scss(baseConfig),
+      commonjs(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -126,7 +136,19 @@ if (!argv.format || argv.format === "es") {
           ]
         ]
       })
-    ]
+    ],
+    onwarn: function(warning, warner) {
+      // if circular dependency warning
+      if (warning.code === "CIRCULAR_DEPENDENCY") {
+        // if coming from a third-party
+        if (warning.importer && warning.importer.startsWith("node_modules/")) {
+          // ignore warning
+          return;
+        }
+      }
+      // Use default for everything else
+      warner(warning);
+    }
   };
   buildFormats.push(esConfig);
 }
@@ -137,16 +159,18 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      file: "dist/alchera-component-lib.ssr.js",
+      file: "dist/alchera-storybook.ssr.js",
       format: "cjs",
-      name: "AlcheraComponentLib",
+      name: "AlcheraStorybook",
       exports: "auto",
       globals
     },
     plugins: [
-      svg(baseConfig),
+      nodeResolve({ preferBuiltins: false }),
+      image(),
       sass(baseConfig),
       scss(baseConfig),
+      commonjs(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -158,7 +182,19 @@ if (!argv.format || argv.format === "cjs") {
       }),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel)
-    ]
+    ],
+    onwarn: function(warning, warner) {
+      // if circular dependency warning
+      if (warning.code === "CIRCULAR_DEPENDENCY") {
+        // if coming from a third-party
+        if (warning.importer && warning.importer.startsWith("node_modules/")) {
+          // ignore warning
+          return;
+        }
+      }
+      // Use default for everything else
+      warner(warning);
+    }
   };
   buildFormats.push(umdConfig);
 }
@@ -169,16 +205,18 @@ if (!argv.format || argv.format === "iife") {
     external,
     output: {
       compact: true,
-      file: "dist/alchera-component-lib.min.js",
+      file: "dist/alchera-storybook.min.js",
       format: "iife",
-      name: "AlcheraComponentLib",
+      name: "AlcheraStorybook",
       exports: "auto",
       globals
     },
     plugins: [
-      svg(baseConfig),
+      nodeResolve({ preferBuiltins: false }),
+      image(),
       sass(baseConfig),
       scss(baseConfig),
+      commonjs(),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -189,10 +227,24 @@ if (!argv.format || argv.format === "iife") {
           ecma: 5
         }
       })
-    ]
+    ],
+    onwarn: function(warning, warner) {
+      // if circular dependency warning
+      if (warning.code === "CIRCULAR_DEPENDENCY") {
+        // if coming from a third-party
+        if (warning.importer && warning.importer.startsWith("node_modules/")) {
+          // ignore warning
+          return;
+        }
+      }
+      // Use default for everything else
+      warner(warning);
+    }
   };
   buildFormats.push(unpkgConfig);
 }
+
+// onwarn: managing wranings | 3rd party libraries circular dependencies warning handler
 
 // Export config
 export default buildFormats;
