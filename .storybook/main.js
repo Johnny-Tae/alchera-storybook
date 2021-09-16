@@ -21,7 +21,8 @@ module.exports = {
   addons: [
     "@storybook/preset-scss",
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
+    "@storybook/addon-postcss"
   ],
   // add this function to tweak the webpack config
   webpackFinal: async (config, { configType }) => {

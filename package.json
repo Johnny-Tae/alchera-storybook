@@ -26,9 +26,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.14.5",
     "@rollup/plugin-image": "^2.1.1",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addons": "^6.3.8",
     "@storybook/preset-scss": "^1.0.3",
     "css-loader": "^5.0.2",
