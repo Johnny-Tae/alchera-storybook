@@ -39,12 +39,6 @@
           width="20"
           style="cursor: pointer"
         />
-        <!-- <img
-          :src="selectAllBoxChecked ? iconFilledCheckbox : iconEmptyCheckbox"
-          height="20"
-          width="20"
-          style="cursor: pointer"
-        /> -->
       </div>
     </template>
 
@@ -94,15 +88,6 @@
           @click="clickPreviewFacePhoto(item.face)"
         />
       </div>
-      <!-- <div>
-        <img
-          :src="
-            !!item.face && item.face !== '' ? iconHasFacePhoto : iconNoFacePhoto
-          "
-          :style="!!item.face && item.face !== '' ? 'cursor: pointer' : ''"
-          @click="clickPreviewFacePhoto(item.face)"
-        />
-      </div> -->
     </template>
 
     <!-- download column -->
@@ -155,10 +140,6 @@ export default {
   },
   data() {
     return {
-      // iconHasFacePhoto: require("../stories/assets/icon_face_photo_blue.svg"),
-      // iconNoFacePhoto: require("../stories/assets/icon_face_photo_gray.svg"),
-      // iconEmptyCheckbox: require("../stories/assets/icon_checkbox_empty.svg"),
-      // iconFilledCheckbox: require("../stories/assets/icon_checkbox_checked.svg"),
       selectAllBoxChecked: false,
       expanded: [],
       realtimeHeaders: [
