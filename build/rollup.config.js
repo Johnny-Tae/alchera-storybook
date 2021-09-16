@@ -26,6 +26,18 @@ const babelPresetEnvConfig = require("../babel.config").presets.filter(
   entry => entry[0] === "@babel/preset-env"
 )[0][1];
 
+// const babelPluginEnvConfig = require("../babel.config").plugins.filter(
+//   entry => {
+//     console.log(entry);
+//     entry[0] === "@babel/plugin-proposal-class-properties" ||
+//       entry[0] === "@babel/plugin-proposal-private-methods" ||
+//       entry[0] === "@babel/plugin-proposal-private-property-in-object";
+//   }
+// );
+
+// console.log(babelPresetEnvConfig, "preset");
+// console.log(babelPluginEnvConfig, "plugin");
+
 const argv = minimist(process.argv.slice(2));
 
 const projectRoot = path.resolve(__dirname, "..");
@@ -73,7 +85,10 @@ const baseConfig = {
     babel: {
       exclude: "node_modules/**",
       extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
-      babelHelpers: "bundled"
+      babelHelpers: "bundled",
+      plugins: [
+        ["@babel/plugin-proposal-private-property-in-object", { loose: false }]
+      ]
     }
   }
 };

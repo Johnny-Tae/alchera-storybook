@@ -1,6 +1,6 @@
 {
   "name": "alchera-storybook",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "",
   "main": "dist/alchera-storybook.ssr.js",
   "browser": "dist/alchera-storybook.esm.js",
@@ -20,7 +20,8 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
   "author": "",
@@ -53,6 +54,7 @@
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/preset-scss": "^1.0.3",
+    "@storybook/storybook-deployer": "^2.8.10",
     "@storybook/vue": "^6.3.8",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
