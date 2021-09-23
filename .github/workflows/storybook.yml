@@ -16,27 +16,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # build-and-deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2.3.1
-  #       with:
-  #         persist-credentials: false
-  #     - name: Install and Build
-  #       run: | # install npm packages and build the Storybook files
-  #         npm install
-  #         npm run deploy-storybook
-  #     # - name: Deploy
-  #     #   uses: JamesIves/github-pages-deploy-action@3.6.2
-  #     #   with:
-  #     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     #     BRANCH: main
-  #     #     FOLDER: docs-build
-  #     #     CLEAN: true
-  #     #     TARGET_FOLDER: docs
-
-  # example
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -45,7 +24,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - name: Install SSH Key
+      #   uses: shimataro/ssh-key-action@v2
+      #   with:
+      #     key: ${{ secretes.SSH_PRIVATE_KEY }}
+      #     known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+
       - uses: actions/checkout@v2
 
       - name: Run a storybook deployer
-        run: npm run deploy-storybook
+        run: npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: Alchera:${{ secrets.GITHUB_TOKEN }}
