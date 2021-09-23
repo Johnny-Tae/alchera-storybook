@@ -27,16 +27,20 @@ jobs:
       # - name: Install SSH Key
       #   uses: shimataro/ssh-key-action@v2
       #   with:
-      #     key: ${{ secretes.SSH_PRIVATE_KEY }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
       #     known_hosts: "just-a-placeholder-so-we-dont-get-errors"
 
       - uses: actions/checkout@v2
 
-      # - name: Run a storybook deployer
-      #   run: npm run deploy-storybook -- --ci
-      - name: testing run a multi-line script
+      - name: Run a storybook deployer
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      - name: testing run a single-line script
-        run: echo Hello, world!
+          npm install
+          npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      # - name: testing run a multi-line script
+      #   run: |
+      #     echo Add other actions to build,
+      #     echo test, and deploy your project.
+      # - name: testing run a single-line script
+      #   run: echo Hello, world!
