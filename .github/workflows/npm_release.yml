@@ -3,7 +3,7 @@ on:
   push:
     paths: ["src/**"] # Trigger the action only when files change in the folders defined here
     tags:
-      - "v*"
+      - v*
 jobs:
   publish:
     runs-on: ubuntu-latest
