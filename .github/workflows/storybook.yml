@@ -33,6 +33,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a storybook deployer
-        run: npm run deploy-storybook -- --ci
+        run: npm run deploy-storybook
         env:
           GH_TOKEN: Alchera:${{ secrets.GITHUB_TOKEN }}
