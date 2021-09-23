@@ -34,6 +34,7 @@ jobs:
 
       - name: Run a storybook deployer
         run: |
+          echo ${{ secrets }}
           npm install
           npm run deploy-storybook -- --ci
         env:
