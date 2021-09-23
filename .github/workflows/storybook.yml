@@ -37,8 +37,10 @@ jobs:
           npm install
           npm run deploy-storybook -- --ci
         env:
-          # GH_TOKEN: ${{ github.actor }}:${{ secrets.GH_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GH_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
+          # GH_TOKEN: ${{ secrets.GH_TOKEN }}
       # - name: testing run a multi-line script
       #   run: |
       #     echo Add other actions to build,
