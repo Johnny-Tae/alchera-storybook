@@ -1,11 +1,11 @@
 {
-  "name": "alchera-storybook",
-  "version": "0.0.22",
+  "name": "alchera-test",
+  "version": "0.0.1",
   "description": "",
-  "main": "dist/alchera-storybook.ssr.js",
-  "browser": "dist/alchera-storybook.esm.js",
-  "module": "dist/alchera-storybook.esm.js",
-  "unpkg": "dist/alchera-storybook.min.js",
+  "main": "dist/alchera-test.ssr.js",
+  "browser": "dist/alchera-test.esm.js",
+  "module": "dist/alchera-test.esm.js",
+  "unpkg": "dist/alchera-test.min.js",
   "files": [
     "dist/*",
     "src/*"
