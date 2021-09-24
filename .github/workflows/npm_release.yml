@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main]
+    # branches: [main]
     # paths: ["src/**"] # Trigger the action only when files change in the folders defined here
     tags:
       - "v*"
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
       # Use this GitHub Action
       - name: Check package version
