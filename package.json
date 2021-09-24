@@ -1,6 +1,6 @@
 {
   "name": "alchera-test",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/alchera-test.ssr.js",
   "browser": "dist/alchera-test.esm.js",
