@@ -4,7 +4,7 @@ on:
     # branches: [main]
     # paths: ["src/**"] # Trigger the action only when files change in the folders defined here
     tags:
-      - "v*"
+      - v*
 name: Publish NPM Package
 # jobs:
 #   publish:
